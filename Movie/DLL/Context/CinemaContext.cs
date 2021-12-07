@@ -12,6 +12,7 @@ namespace DLL.Context
     {
         public CinemaContext(DbContextOptions<CinemaContext> dbContextOptions) : base(dbContextOptions)
         {
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -25,8 +26,13 @@ namespace DLL.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Employee>().HasOne(x => x.Login);
+            modelBuilder.Entity<Employee>().HasOne(x => x.Login).WithOne(x => x.Employee).HasForeignKey<Employee>(x => x.LoginDataId);
             modelBuilder.Entity<Booking>().HasOne(x => x.Employee);
+            modelBuilder.Entity<Booking>().HasOne(x => x.Session);
+            modelBuilder.Entity<Booking>().HasOne(x => x.Place).WithMany(x => x.Booking).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Session>().HasOne(x => x.Film);
+            modelBuilder.Entity<CinemaHall>().HasMany(x => x.Place).WithOne(x => x.Hall);
+            modelBuilder.Entity<CinemaHall>().HasMany(x => x.Sessions).WithOne(x => x.Hall);
         }
 
 

@@ -17,6 +17,8 @@ namespace DLL.Models
         public int PhoneNumber { get; set; }
         public string Role { get; set; }
 
+        public int LoginDataId { get; set; }
+
         public LoginData Login { get; set; }
 
     }

@@ -16,6 +16,7 @@ namespace DLL.Models
         public int Cost { get; set; }
 
         public CinemaHall Hall { get; set; }
+        public List<Booking> Booking { get; set; }
 
     }
 }

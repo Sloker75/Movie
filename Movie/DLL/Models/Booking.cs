@@ -9,9 +9,10 @@ namespace DLL.Models
     public class Booking
     {
         public int Id { get; set; }
-        public bool ISPaid { get; set; }
+        public bool IsPaid { get; set; }
         public int PhoneNumber { get; set; }
         public Session Session { get; set; }
         public Employee Employee { get; set; }
+        public Place Place { get; set; }
     }
 }

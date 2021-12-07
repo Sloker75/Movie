@@ -11,7 +11,9 @@ namespace DLL.Models
         public int Id { get; set; }
 
         public int HallRoom { get; set; }
-        public Place Place { get; set; }
+        public int NumberOfRows { get; set; }
+        public int NumberOfSeatsInRow { get; set; }
+        public List<Place> Place { get; set; }
         public List<Session> Sessions { get; set; }
 
     }

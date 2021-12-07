@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movie", "Movie\Movie.csproj", "{2A99C803-3B8D-47D7-A562-C1D4D331597F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movie", "Movie\Movie.csproj", "{2A99C803-3B8D-47D7-A562-C1D4D331597F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{C96E905F-4AA4-46B0-98FF-0E79BDF3C2A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{C96E905F-4AA4-46B0-98FF-0E79BDF3C2A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLL", "DLL\DLL.csproj", "{D38C98EF-36BA-4075-9304-0CC57EAB3D94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLL", "DLL\DLL.csproj", "{D38C98EF-36BA-4075-9304-0CC57EAB3D94}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DB9CA213-649D-46CF-BC2E-EA59E1E06A86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLTests", "DLLTests\DLLTests.csproj", "{DF31DD8E-7326-400D-83C4-C193713262F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +31,16 @@ Global
 		{D38C98EF-36BA-4075-9304-0CC57EAB3D94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D38C98EF-36BA-4075-9304-0CC57EAB3D94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D38C98EF-36BA-4075-9304-0CC57EAB3D94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF31DD8E-7326-400D-83C4-C193713262F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF31DD8E-7326-400D-83C4-C193713262F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF31DD8E-7326-400D-83C4-C193713262F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF31DD8E-7326-400D-83C4-C193713262F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DF31DD8E-7326-400D-83C4-C193713262F2} = {DB9CA213-649D-46CF-BC2E-EA59E1E06A86}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48134013-45B5-41E1-A06E-06EBCB46C5AF}
