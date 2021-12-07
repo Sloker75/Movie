@@ -1,4 +1,5 @@
-﻿using DLL.Models;
+﻿using DLL.Context;
+using DLL.Models;
 using DLL.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,26 +9,11 @@ using System.Threading.Tasks;
 
 namespace DLL.Repository
 {
-    public class FilmRepository : IRepositoryAdd<Film>, IRepositoryGet<CinemaHall>
+    public class FilmRepository : BaseRepository<Film>
     {
-        public void Add(Film item)
+        public FilmRepository(CinemaContext cinemaContext) : base(cinemaContext)
         {
-            throw new NotImplementedException();
-        }
 
-        public void AddAll(List<Film> itemList)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CinemaHall Get()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<CinemaHall> GetAll()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,33 +1,30 @@
-﻿using DLL.Models;
+﻿using DLL.Context;
+using DLL.Models;
 using DLL.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DLL.Repository
 {
-    public class EmployeeRepository : IRepositoryAdd<Employee>, IRepositoryGet<Employee>
+    public class EmployeeRepository : BaseRepository<Employee>
     {
-        public void Add(Employee item)
+        public EmployeeRepository(CinemaContext cinemaContext) : base(cinemaContext)
         {
-            throw new NotImplementedException();
         }
 
-        public void AddAll(List<Employee> itemList)
+        public override async Task<IReadOnlyCollection<Employee>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await this.Entities.Include(x => x.Login).ToListAsync().ConfigureAwait(false);
         }
 
-        public Employee Get()
+        public override async Task<IReadOnlyCollection<Employee>> FindByConditionAsync(Expression<Func<Employee, bool>> predicat)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Employee> GetAll()
-        {
-            throw new NotImplementedException();
+            return await this.Entities.Where(predicat).Include(x => x.Login).ToListAsync().ConfigureAwait(false);
         }
     }
 }

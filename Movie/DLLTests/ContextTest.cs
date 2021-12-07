@@ -66,31 +66,48 @@ namespace DLLTests
             var Place = context.place.Where(x => x.Cost == 100);
         }
 
-        //public void TestsaveBooking()
-        //{
-        //    createDb();
-        //    context.booking.Add(new Booking() { });
-        //}
+        public void TestsaveBooking()
+        {
+            var Place = context.place.First(x => x.Cost == 100);
+            var Session = context.session.First();
+            var Employee = context.employee.First(x => x.Name == "vlad");
+            createDb();
+            context.booking.Add(new Booking()
+            {
+                PhoneNumber = 0965471545,
+                IsPaid = true,
+                Place = Place,
+                Session = Session,
+                Employee = Employee
+            });
+        }
 
 
-        //public void TestsaveEmployee()
-        //{
-        //    createDb();
-        //    context.employee.Add(new Employee() 
-        //    {
-        //        Name = "Vlad",
-        //        Surname = "Burylo",
-        //        salary = 15000,
-        //        BirthDay = new System.DateTime(2004, 10, 6, 21, 5, 14),
-        //        LoginDataId = 1,
-        //        PhoneNumber = 0964786515,
-        //        Role = "admin",
-        //        Login = 
-        //    });
-        //}
+        public void TestsaveLoginData()
+        {
+            createDb();
+            context.loginData.Add(new LoginData() { Login = "vlad", Password = "154" });
+            context.SaveChanges();
+            var Login = context.loginData.Where(x => x.Login == "Vlad").ToList();
+        }
 
-        
-
-
+        public void TestsaveEmployee()
+        {
+            createDb();
+            var Login = context.loginData.First(x => x.Login == "Vlad");
+            context.employee.Add(new Employee()
+            {
+                Name = "Vlad",
+                Surname = "Burylo",
+                salary = 15000,
+                BirthDay = new System.DateTime(2004, 10, 6, 21, 5, 14),
+                LoginDataId = 1,
+                PhoneNumber = 0964786515,
+                Role = "admin",
+                Login = Login
+            });
+            context.SaveChanges();
+            var Employee = context.employee.Where(x => x.Name == "vlad").ToList();
+        }
     }
 }

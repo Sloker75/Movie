@@ -1,32 +1,39 @@
-﻿using DLL.Models;
+﻿using DLL.Context;
+using DLL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DLL.Repository.Interfaces
 {
-    public class LoginDataRepository : IRepositoryAdd<LoginData>, IRepositoryGet<LoginData>
+    public class LoginDataRepository : BaseRepository<LoginData>
     {
-        public void Add(LoginData item)
+        public LoginDataRepository(CinemaContext cinemaContext) : base(cinemaContext)
         {
-            throw new NotImplementedException();
+
         }
 
-        public void AddAll(List<LoginData> itemList)
+        public override async Task<IReadOnlyCollection<LoginData>> FindByConditionAsync(Expression<Func<LoginData, bool>> predicat)
         {
-            throw new NotImplementedException();
+            return await this.Entities.Where(predicat)
+                .Include(x => x.Employee)
+                .ToListAsync()
+                .ConfigureAwait(false);
         }
 
-        public LoginData Get()
+        public override async Task<IReadOnlyCollection<LoginData>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await this.Entities
+                .Include(x => x.Employee)
+                .ToListAsync()
+                .ConfigureAwait(false);
         }
 
-        public IEnumerable<LoginData> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+
+
     }
 }

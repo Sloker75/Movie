@@ -1,33 +1,33 @@
-﻿using DLL.Models;
+﻿using DLL.Context;
+using DLL.Models;
 using DLL.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DLL.Repository
 {
-    public class SessionRepository : IRepositoryAdd<Session>, IRepositoryGet<Session>
+    public class SessionRepository : BaseRepository<Session>
     {
-        public void Add(Session item)
+        public SessionRepository(CinemaContext cinemaContext) : base(cinemaContext)
         {
-            throw new NotImplementedException();
+
         }
 
-        public void AddAll(List<Session> itemList)
+        public override async Task<IReadOnlyCollection<Session>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await this.Entities.Include(x => x.Film).Include(x => x.Hall)
+               .ToListAsync().ConfigureAwait(false);
         }
 
-        public Session Get()
+        public override async Task<IReadOnlyCollection<Session>> FindByConditionAsync(Expression<Func<Session, bool>> predicat)
         {
-            throw new NotImplementedException();
+            return await this.Entities.Where(predicat).Include(x => x.Film).Include(x => x.Hall).ToListAsync().ConfigureAwait(false);
         }
 
-        public IEnumerable<Session> GetAll()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
