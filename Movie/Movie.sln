@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLL", "DLL\DLL.csproj", "{D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DB9CA213-649D-46CF-BC2E-EA59E1E06A86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLTests", "DLLTests\DLLTests.csproj", "{DF31DD8E-7326-400D-83C4-C193713262F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLLTests", "DLLTests\DLLTests.csproj", "{DF31DD8E-7326-400D-83C4-C193713262F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLLTests", "BLLTests\BLLTests.csproj", "{76F288B0-DE0E-4825-9390-609CBFE52787}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,12 +37,17 @@ Global
 		{DF31DD8E-7326-400D-83C4-C193713262F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF31DD8E-7326-400D-83C4-C193713262F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF31DD8E-7326-400D-83C4-C193713262F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76F288B0-DE0E-4825-9390-609CBFE52787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76F288B0-DE0E-4825-9390-609CBFE52787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76F288B0-DE0E-4825-9390-609CBFE52787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76F288B0-DE0E-4825-9390-609CBFE52787}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DF31DD8E-7326-400D-83C4-C193713262F2} = {DB9CA213-649D-46CF-BC2E-EA59E1E06A86}
+		{76F288B0-DE0E-4825-9390-609CBFE52787} = {DB9CA213-649D-46CF-BC2E-EA59E1E06A86}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48134013-45B5-41E1-A06E-06EBCB46C5AF}

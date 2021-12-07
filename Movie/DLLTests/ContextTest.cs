@@ -20,8 +20,8 @@ namespace DLLTests
             var options = optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CinemaDbTest;Integrated Security=True;Connect Timeout=30;").Options;
             try
             {
-                var db = new CinemaContext(options);
-                Assert.NotNull(db);
+                context = new CinemaContext(options);
+                Assert.NotNull(context);
             }
             catch (Exception ex)
             {
@@ -29,14 +29,68 @@ namespace DLLTests
             }
         }
 
-        //[Fact]
-        //public void AddFilmTest()
-        //{
-        //    context.film.Add(new Film() {MovieTitle = "" });
-        //    context.SaveChanges();
+        [Fact]
+        public void TestReadAndSaveFilm()
+        {
+            createDb();
+            context.film.Add(new Film() { MovieTitle = "Detpoll", Genre = "Comedy", MovieDuration = new System.DateTime(1,1,1,1,54,34)});
+            context.SaveChanges();
+            var Film = context.film.Where(x => x.MovieTitle == "Detpoll").ToList();
+        }
 
-        //    var movie = context.film.Where(x => x.MovieTitle == "g");
-        //    Assert.NotNull(movie);
+
+        public void TestReadSaveHall()
+        {
+            createDb();
+            context.cinemaHall.Add(new CinemaHall() {HallRoom = 5, NumberOfRows = 10, NumberOfSeatsInRow = 15 });
+            context.SaveChanges();
+            var Hall = context.cinemaHall.Where(x => x.HallRoom == 5).ToList();
+        }
+
+        public void TestReadAndSaveSession()
+        {
+            createDb();
+            var Film = context.film.First(x => x.MovieTitle == "Detpoll");
+            var Hall = context.cinemaHall.First(x => x.HallRoom == 5);
+            context.session.Add(new Session() { Film = Film, Hall = Hall, endOfTheSession = new System.DateTime(2021, 11, 5, 15, 25, 15), startOfTheSession = new System.DateTime(2021, 11, 5, 13, 10, 2) });
+            context.SaveChanges();
+            var Session = context.session.First();
+        }
+
+        public void TestReadSavePlace()
+        {
+            createDb();
+            var Hall = context.cinemaHall.First(x => x.HallRoom == 5);
+            context.place.Add(new Place() { Hall = Hall, Cost = 100, Row = 4, RowNumber = 5, });
+            context.SaveChanges();
+            var Place = context.place.Where(x => x.Cost == 100);
+        }
+
+        //public void TestsaveBooking()
+        //{
+        //    createDb();
+        //    context.booking.Add(new Booking() { });
         //}
+
+
+        //public void TestsaveEmployee()
+        //{
+        //    createDb();
+        //    context.employee.Add(new Employee() 
+        //    {
+        //        Name = "Vlad",
+        //        Surname = "Burylo",
+        //        salary = 15000,
+        //        BirthDay = new System.DateTime(2004, 10, 6, 21, 5, 14),
+        //        LoginDataId = 1,
+        //        PhoneNumber = 0964786515,
+        //        Role = "admin",
+        //        Login = 
+        //    });
+        //}
+
+        
+
+
     }
 }

@@ -12,7 +12,6 @@ namespace DLL.Context
     {
         public CinemaContext(DbContextOptions<CinemaContext> dbContextOptions) : base(dbContextOptions)
         {
-            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
