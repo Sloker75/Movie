@@ -23,6 +23,7 @@ namespace DLL.Repository.Interfaces
         public virtual async Task CreateAsync(T item)
         {
             await Entities.AddAsync(item).ConfigureAwait(false);
+            await context.SaveChangesAsync();
         }
 
         public virtual async Task<IReadOnlyCollection<T>> FindByConditionAsync(Expression<Func<T, bool>> predicat)

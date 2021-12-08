@@ -22,6 +22,8 @@ namespace DLL.Repository
             return await this.Entities.Include(x => x.Login).ToListAsync().ConfigureAwait(false);
         }
 
+        
+
         public override async Task<IReadOnlyCollection<Employee>> FindByConditionAsync(Expression<Func<Employee, bool>> predicat)
         {
             return await this.Entities.Where(predicat).Include(x => x.Login).ToListAsync().ConfigureAwait(false);

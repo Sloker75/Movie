@@ -25,15 +25,5 @@ namespace DLL.Repository.Interfaces
                 .ConfigureAwait(false);
         }
 
-        public override async Task<IReadOnlyCollection<LoginData>> GetAllAsync()
-        {
-            return await this.Entities
-                .Include(x => x.Employee)
-                .ToListAsync()
-                .ConfigureAwait(false);
-        }
-
-
-
     }
 }

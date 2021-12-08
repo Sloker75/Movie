@@ -9,6 +9,9 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+
+using DLL.Models;
+
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -23,6 +26,9 @@ namespace Movie
         public MainWindow()
         {
             InitializeComponent();
+
+            var data = new Employee();
+
         }
     }
 }
