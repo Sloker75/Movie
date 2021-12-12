@@ -32,6 +32,21 @@ namespace DLL.Context
             modelBuilder.Entity<Session>().HasOne(x => x.Film);
             modelBuilder.Entity<CinemaHall>().HasMany(x => x.Place).WithOne(x => x.Hall);
             modelBuilder.Entity<CinemaHall>().HasMany(x => x.Sessions).WithOne(x => x.Hall);
+
+
+            //modelBuilder.Entity<LoginData>().HasData(new LoginData() { Id = 1, Login = "vladburilo@gmail.com", Password = "159753" });
+            //modelBuilder.Entity<Employee>().HasData(new Employee()
+            //{
+            //    Id = 1,
+            //    Name = "Vlad",
+            //    Surname = "Burylo",
+            //    BirthDay = new System.DateTime(2004, 10, 6),
+            //    LoginDataId = 1,
+            //    PhoneNumber = 0961457585,
+            //    salary = 150000,
+            //    Role = "admin"
+            //});
+
         }
 
 

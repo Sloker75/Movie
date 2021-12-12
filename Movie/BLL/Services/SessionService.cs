@@ -11,20 +11,28 @@ namespace BLL.Services
 {
     public class SessionService
     {
-        private CinemaContext context;
-        public SessionService(CinemaContext context)
+        SessionRepository sessionRepository;
+        CinemaHallRepository cinemaHallRepository;
+        public SessionService(SessionRepository sessionRepository, CinemaHallRepository cinemaHallRepository)
         {
-            this.context = context;
+            this.sessionRepository = sessionRepository;
+            this.cinemaHallRepository = cinemaHallRepository;
         }
-
 
         public async void AddSession(Session session)
         {
-            SessionRepository sessionRepository = new(context);
-
             await sessionRepository.CreateAsync(session);
         }
 
+        public async Task<IReadOnlyCollection<Session>> GetAllSession()
+        {
+            return await sessionRepository.GetAllAsync();
+        }
+
+        public async Task<IEnumerable<CinemaHall>> GetAllCinemaHall()
+        {
+            return await cinemaHallRepository.GetAllAsync();
+        }
 
     }
 }

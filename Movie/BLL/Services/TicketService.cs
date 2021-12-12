@@ -11,40 +11,32 @@ namespace BLL.Services
 {
     public class TicketService
     {
-        private CinemaContext context;
+        BookingRepository bookingRepository;
 
-        public TicketService(CinemaContext context)
+        public TicketService(BookingRepository bookingRepository)
         {
-            this.context = context;
+            this.bookingRepository = bookingRepository;
         }
 
         public async Task<bool> AddBooking(Booking booking)
         {
-            BookingRepository bookingRepository = new(context);
             var place = await bookingRepository.FindByConditionAsync(x => x.Place.RowNumber == booking.Place.RowNumber && x.Place.Row == booking.Place.Row);
             if (place.Count > 0) return false;
 
             await bookingRepository.CreateAsync(booking);
             return true;
-
         }
 
         public async Task<List<Booking>> SessionOnTheTicket(Session session)
         {
-            BookingRepository bookingRepository = new(context);
-            var bookSession = await bookingRepository.FindByConditionAsync(x => x.Session.Id == session.Id);
-            var book = (List<Booking>)bookSession;
-            return book;
+            return (await bookingRepository.FindByConditionAsync(x => x.Session.Id == session.Id))?.ToList();
         }
 
 
         public async Task<IReadOnlyCollection<Booking>> GetAll()
         {
-            BookingRepository bookingRepository = new(context);
             return await bookingRepository.GetAllAsync();
         }
-
-
 
     }
 }

@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BLL.Services;
+using DLL.Context;
+using DLL.Repository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -26,8 +29,25 @@ namespace Movie
 
         private void ConfigureService(ServiceCollection services)
         {
+            //Window
             services.AddSingleton<MainWindow>();
-            //services.AddDbContext<CinemaContext>(option => option.UseSqlServer(ConfigurationManager.ConnectionStrings["mainConnection"].ConnectionString));
+            services.AddTransient<AuthorizationWindow>();
+            //Context
+            services.AddDbContext<CinemaContext>(option => option.UseSqlServer(ConfigurationManager.ConnectionStrings["mainConnection"].ConnectionString));
+            //Repository
+            services.AddTransient<BookingRepository>();
+            services.AddTransient<CinemaHallRepository>();
+            services.AddTransient<EmployeeRepository>();
+            services.AddTransient<FilmRepository>();
+            services.AddTransient<LoginDataRepository>();
+            services.AddTransient<PlaceRepository>();
+            services.AddTransient<SessionRepository>();
+            //Service
+            services.AddTransient<AdminService>();
+            services.AddTransient<AuthorizationService>();
+            services.AddTransient<SessionService>();
+            services.AddTransient<TicketService>();
+            
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)

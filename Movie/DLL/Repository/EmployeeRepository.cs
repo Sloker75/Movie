@@ -17,6 +17,12 @@ namespace DLL.Repository
         {
         }
 
+
+        public async Task<IReadOnlyCollection<Employee>> GetAllPeopleAsync()
+        {
+            return await this.Entities.Include(x => x.Login).ToListAsync().ConfigureAwait(false);
+        }
+
         public override async Task<IReadOnlyCollection<Employee>> GetAllAsync()
         {
             return await this.Entities.Include(x => x.Login).ToListAsync().ConfigureAwait(false);
@@ -28,5 +34,6 @@ namespace DLL.Repository
         {
             return await this.Entities.Where(predicat).Include(x => x.Login).ToListAsync().ConfigureAwait(false);
         }
+
     }
 }

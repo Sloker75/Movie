@@ -1,5 +1,6 @@
 ﻿using DLL.Context;
 using DLL.Models;
+using DLL.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DLL.Repository.Interfaces
+namespace DLL.Repository
 {
     public class LoginDataRepository : BaseRepository<LoginData>
     {

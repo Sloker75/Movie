@@ -12,26 +12,39 @@ namespace BLL.Services
 {
     public class AdminService
     {
-        public CinemaContext context { get; set; }
 
-        public AdminService(CinemaContext context)
+        EmployeeRepository employeeRepository;
+        CinemaHallRepository cinemaHallRepository;
+        public AdminService(EmployeeRepository employeeRepository, CinemaHallRepository cinemaHallRepository)
         {
-            this.context = context;
+            this.employeeRepository = employeeRepository;
+            this.cinemaHallRepository = cinemaHallRepository;
         }
 
 
         public async void AddEmployee(Employee Employee)
         {
-            EmployeeRepository employeeRepository = new(context);
-
             await employeeRepository.CreateAsync(Employee);
         }
 
-
         public async Task<IReadOnlyCollection<Employee>> GetAll()
         {
-            EmployeeRepository employeeRepository = new(context);
+            return await employeeRepository.GetAllPeopleAsync();
+        }
+
+        public async Task<IReadOnlyCollection<Employee>> GetAllWithLogin()
+        {
             return await employeeRepository.GetAllAsync();
+        }
+
+        public async Task<IReadOnlyCollection<Employee>> GetEmployee(string name, string surname)
+        {
+            return (await employeeRepository.FindByConditionAsync(x => x.Name == name && x.Surname == surname))?.ToList();
+        }
+
+        public async void AddHall(CinemaHall cinemaHall)
+        {
+            await cinemaHallRepository.CreateAsync(cinemaHall);
         }
 
 

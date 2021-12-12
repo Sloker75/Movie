@@ -1,6 +1,6 @@
 ﻿using DLL.Context;
 using DLL.Models;
-using DLL.Repository.Interfaces;
+using DLL.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,26 +11,16 @@ namespace BLL.Services
 {
     public class AuthorizationService
     {
-        private CinemaContext context;
-        public AuthorizationService(CinemaContext context)
+        LoginDataRepository LoginDataRepository;
+        public AuthorizationService(LoginDataRepository loginDataRepository)
         {
-            this.context = context;
+            this.LoginDataRepository = loginDataRepository;
         }
 
         public async Task<LoginData> Authorization(string email, string pass)
         {
-            LoginDataRepository LoginDataRepository = new(context);
-
-            var Login = await LoginDataRepository.FindByConditionAsync(x => x.Login == email && x.Password == pass);
-
-            var log = (List<LoginData>)Login;
-
-            return log[0];
+            return (await LoginDataRepository.FindByConditionAsync(x => x.Login == email && x.Password == pass))?.First();
         }
-
-        
-
-
 
     }
 }
