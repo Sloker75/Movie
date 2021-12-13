@@ -35,5 +35,10 @@ namespace DLL.Repository.Interfaces
         {
             return await this.Entities.ToListAsync().ConfigureAwait(false);
         }
+
+        public async Task SaveUpdate()
+        {
+            await context.SaveChangesAsync();
+        }
     }
 }

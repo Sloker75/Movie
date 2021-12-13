@@ -10,6 +10,7 @@ namespace DLL.Models
     {
         public int Id { get; set; }
         public bool IsPaid { get; set; }
+        public bool IsBooking { get; set; }
         public int PhoneNumber { get; set; }
         public Session Session { get; set; }
         public Employee Employee { get; set; }

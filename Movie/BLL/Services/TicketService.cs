@@ -38,5 +38,10 @@ namespace BLL.Services
             return await bookingRepository.GetAllAsync();
         }
 
+        public async Task<bool> IsPaid(Booking booking)
+        {
+            return await bookingRepository.IsPaidAsync(booking);
+        }
+
     }
 }

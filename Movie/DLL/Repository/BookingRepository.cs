@@ -28,5 +28,24 @@ namespace DLL.Repository
             return await this.Entities.Where(predicat).Include(x => x.Employee).Include(x => x.Place).Include(x => x.Session).ToListAsync().ConfigureAwait(false);
         }
 
+        public async Task<bool> IsPaidAsync(Booking booking)
+        {
+            var book = this.Entities.Where(x => x.Session.Id == booking.Session.Id && x.Place.Row == booking.Place.Row && x.Place.RowNumber == booking.PhoneNumber);
+            if (book.Count() > 0)
+            {
+                var Paid = book.First();
+                if (!Paid.IsPaid)
+                {
+                    Paid.IsPaid = true;
+                    await this.SaveUpdate();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
+
     }
 }

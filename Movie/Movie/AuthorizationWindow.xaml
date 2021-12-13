@@ -18,7 +18,7 @@
         </Rectangle>
         <Image Source="Photo/Login.png" Width="100" Height="100" VerticalAlignment="Top" Margin="20"></Image>
 
-        <Rectangle Width="280" Height="240" Fill="White" VerticalAlignment="Bottom" Margin="0,100">
+        <Rectangle Width="280" Height="209" Fill="White" VerticalAlignment="Top" Margin="35,144,35,0">
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="60" RenderingBias="Quality"></DropShadowEffect>
             </Rectangle.Effect>
@@ -29,9 +29,9 @@
             <StackPanel VerticalAlignment="Center">
                 <TextBox Name ="LoginTextBox" Margin="0,20,0,0" materialDesing:HintAssist.Hint="Login"></TextBox>
                 <TextBox Name ="PasswordTextBox" Margin="0,20,0,0" materialDesing:HintAssist.Hint="Password"></TextBox>
-                <Button Name="logInBtn" Click="logInBtn_Click" Margin="0,30">Log in</Button>
+                <Button Width="200" BorderThickness="10" Name="logInBtn" Click="logInBtn_Click" Margin="0,30">Log in</Button>
             </StackPanel>
         </Grid>
-        
+
     </Grid>
 </Window>
