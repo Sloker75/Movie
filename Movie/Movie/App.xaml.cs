@@ -1,8 +1,11 @@
 ﻿using BLL.Services;
 using DLL.Context;
+using DLL.Models;
 using DLL.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Movie.View;
+using Movie.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -32,6 +35,12 @@ namespace Movie
             //Window
             services.AddSingleton<MainWindow>();
             services.AddTransient<AuthorizationWindow>();
+            //Page
+            services.AddTransient<EmployeePage>();
+            services.AddTransient<FilmPage>();
+            services.AddTransient<SessionPage>();
+            services.AddTransient<TicketPage>();
+            services.AddTransient<CinemaHallPage>();
             //Context
             services.AddDbContext<CinemaContext>(option => option.UseSqlServer(ConfigurationManager.ConnectionStrings["mainConnection"].ConnectionString));
             //Repository
@@ -47,12 +56,18 @@ namespace Movie
             services.AddTransient<AuthorizationService>();
             services.AddTransient<SessionService>();
             services.AddTransient<TicketService>();
-            
+            //ViewModel
+            services.AddTransient<LoginViewModel>();
+            services.AddTransient<EmployeeViewModel>();
+            //Model
+            services.AddSingleton<Employee>();
+
+
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            serviceProvider.GetService<MainWindow>().Show();
+            serviceProvider.GetService<AuthorizationWindow>().Show();
         }
     }
 }

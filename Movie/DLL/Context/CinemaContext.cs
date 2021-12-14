@@ -42,7 +42,7 @@ namespace DLL.Context
                 Surname = "Burylo",
                 BirthDay = new System.DateTime(2004, 10, 6),
                 LoginDataId = 1,
-                PhoneNumber = 0961457585,
+                PhoneNumber = "0961457585",
                 salary = 150000,
                 Role = "admin"
             });

@@ -102,7 +102,7 @@ namespace Movie.ViewModel
 
         private void ExecuteAddEmployee(object obj)
         {
-            adminService.AddEmployeeAsync(CurrentEmployee);
+              adminService.AddEmployeeAsync(CurrentEmployee);
         }
     }
 }

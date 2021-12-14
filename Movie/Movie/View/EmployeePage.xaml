@@ -9,6 +9,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EmployeePage">
 
+    <!--<Page.Content>
+        <m:EmployeeViewModel></m:EmployeeViewModel>
+    </Page.Content>-->
+    
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -21,18 +26,18 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Orientation="Vertical" >
-                <TextBox Name="nameTextBox" materialDesing:HintAssist.Hint="Name" Margin="0 0 0 20"></TextBox>
-                <TextBox Name="surnameTextBox" materialDesing:HintAssist.Hint="Surname" Margin="0 0 0 20"></TextBox>
-                <TextBox Name="roleTextBox" materialDesing:HintAssist.Hint="Role" Margin="0 0 0 0"></TextBox>
+                <TextBox Text="{Binding CurrentEmployee.Name, UpdateSourceTrigger=PropertyChanged}" Name="nameTextBox" materialDesing:HintAssist.Hint="Name" Margin="0 0 0 20"></TextBox>
+                <TextBox Text="{Binding CurrentEmployee.Surname, UpdateSourceTrigger=PropertyChanged}" Name="surnameTextBox" materialDesing:HintAssist.Hint="Surname" Margin="0 0 0 20"></TextBox>
+                <TextBox Text="{Binding CurrentEmployee.Role, UpdateSourceTrigger=PropertyChanged}" Name="roleTextBox" materialDesing:HintAssist.Hint="Role" Margin="0 0 0 0"></TextBox>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Vertical">
-                <TextBox Name="salaryTextBox" materialDesing:HintAssist.Hint="Salary" Margin="10 0 0 20"></TextBox>
-                <TextBox Name="phoneNumberTextBox" materialDesing:HintAssist.Hint="Phone Number" Margin="10 0 0 20"></TextBox>
-                <TextBox Name="calendarTextBox" materialDesing:HintAssist.Hint="Birth Day (yyyy.mm.dd)" Margin="10 0 0 0"></TextBox>
+                <TextBox Text="{Binding CurrentEmployee.salary, UpdateSourceTrigger=PropertyChanged}" Name="salaryTextBox" materialDesing:HintAssist.Hint="Salary" Margin="10 0 0 20"></TextBox>
+                <TextBox Text="{Binding CurrentEmployee.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Name="phoneNumberTextBox" materialDesing:HintAssist.Hint="Phone Number" Margin="10 0 0 20"></TextBox>
+                <TextBox Text="{Binding CurrentEmployee.BirthDay, UpdateSourceTrigger=PropertyChanged}" Name="calendarTextBox" materialDesing:HintAssist.Hint="Birth Day (yyyy.mm.dd)" Margin="10 0 0 0"></TextBox>
             </StackPanel>
-            <Button Name="addEmployeeBtn" Click="addEmployeeBtn_Click" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="30" Width="450" Margin="0 0 0 20" BorderThickness="10" >Add Employee</Button>
+            <Button Command="{Binding AddLoginCommand}" Name="addEmployeeBtn" Click="addEmployeeBtn_Click" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="30" Width="450" Margin="0 0 0 20" BorderThickness="10" >Add Employee</Button>
         </Grid>
-        <ListBox Name="listEmployee" Grid.Row="1"></ListBox>
+        <ListBox ContextMenu="{Binding Worker}" Name="listEmployee" Grid.Row="1"></ListBox>
         
     </Grid>
 </Page>

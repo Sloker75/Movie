@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Movie.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +20,21 @@ namespace Movie
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
-        public AuthorizationWindow()
+
+        public AuthorizationWindow(LoginViewModel loginViewModel)
         {
             InitializeComponent();
+            this.DataContext = loginViewModel;
         }
 
         private void logInBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void closeAuthorizationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

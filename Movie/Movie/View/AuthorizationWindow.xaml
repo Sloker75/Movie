@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Movie"
         xmlns:materialDesing ="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Authorization" Height="500" Width="350" ResizeMode="NoResize" >
+        Title="Authorization" Height="500" Width="350" ResizeMode="NoResize" WindowStyle="None" >
+
     <Grid>
         <Rectangle Height="280" VerticalAlignment="Top">
             <Rectangle.Fill>
@@ -26,12 +27,14 @@
 
         <Grid Width="280" Height="240" VerticalAlignment="Bottom" Margin="0,100">
             <TextBlock Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5" FontSize="18">Login</TextBlock>
-            <StackPanel VerticalAlignment="Center">
-                <TextBox Name ="LoginTextBox" Margin="0,20,0,0" materialDesing:HintAssist.Hint="Login"></TextBox>
-                <TextBox Name ="PasswordTextBox" Margin="0,20,0,0" materialDesing:HintAssist.Hint="Password"></TextBox>
-                <Button Width="200" BorderThickness="10" Name="logInBtn" Click="logInBtn_Click" Margin="0,30">Log in</Button>
+            <StackPanel VerticalAlignment="Center" Height="240">
+                <TextBox Text="{Binding LoginData.Login, UpdateSourceTrigger=PropertyChanged}" Name ="LoginTextBox" Margin="0,20,0,0" materialDesing:HintAssist.Hint="Login"></TextBox>
+                <TextBox Text="{Binding LoginData.Password, UpdateSourceTrigger=PropertyChanged}" Name ="PasswordTextBox" Margin="0,20,0,0" materialDesing:HintAssist.Hint="Password"></TextBox>
+                <Button Command="{Binding AddLoginCommand}" Width="200" BorderThickness="10" Name="logInBtn" Click="logInBtn_Click" Margin="0,30">Log in</Button>
             </StackPanel>
         </Grid>
-
+        <Button Name="closeAuthorizationBtn" Click="closeAuthorizationBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="black">
+            <materialDesing:PackIcon Kind="Close" Width="20" Height="20"></materialDesing:PackIcon>
+        </Button>
     </Grid>
 </Window>

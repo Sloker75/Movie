@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Movie.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace Movie.View
     /// </summary>
     public partial class EmployeePage : Page
     {
-        public EmployeePage()
+        public EmployeePage(EmployeeViewModel employeeViewModel)
         {
             InitializeComponent();
+            this.DataContext = employeeViewModel;
         }
 
         private void addEmployeeBtn_Click(object sender, RoutedEventArgs e)
