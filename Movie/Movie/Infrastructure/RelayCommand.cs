@@ -9,8 +9,6 @@ namespace Movie.Infrastructure
 {
     public class RelayCommand : ICommand
     {
-        public event EventHandler? CanExecuteChanged;
-
         public RelayCommand(Action<object> execute) : this(execute, null)
         {
 
@@ -29,11 +27,11 @@ namespace Movie.Infrastructure
         private readonly Action<object> _execute;
         private readonly Predicate<object> _canExecute;
 
-        //public event EventHandler CanExecuteChanged
-        //{
-        //    add { CommandManager.RequerySuggested += value; }
-        //    remove { CommandManager.RequerySuggested -= value; }
-        //}
+        public event EventHandler? CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
 
         public bool CanExecute(object? parameter)
         {

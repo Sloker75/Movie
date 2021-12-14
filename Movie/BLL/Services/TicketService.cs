@@ -18,7 +18,7 @@ namespace BLL.Services
             this.bookingRepository = bookingRepository;
         }
 
-        public async Task<bool> AddBooking(Booking booking)
+        public async Task<bool> AddBookingAsync(Booking booking)
         {
             var place = await bookingRepository.FindByConditionAsync(x => x.Place.RowNumber == booking.Place.RowNumber && x.Place.Row == booking.Place.Row);
             if (place.Count > 0) return false;
@@ -27,18 +27,18 @@ namespace BLL.Services
             return true;
         }
 
-        public async Task<List<Booking>> SessionOnTheTicket(Session session)
+        public async Task<List<Booking>> SessionOnTheTicketAsync(Session session)
         {
             return (await bookingRepository.FindByConditionAsync(x => x.Session.Id == session.Id))?.ToList();
         }
 
 
-        public async Task<IReadOnlyCollection<Booking>> GetAll()
+        public async Task<IReadOnlyCollection<Booking>> GetAllAsync()
         {
             return await bookingRepository.GetAllAsync();
         }
 
-        public async Task<bool> IsPaid(Booking booking)
+        public async Task<bool> IsPaidAsync(Booking booking)
         {
             return await bookingRepository.IsPaidAsync(booking);
         }

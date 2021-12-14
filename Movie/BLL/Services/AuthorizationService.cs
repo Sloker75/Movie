@@ -17,7 +17,7 @@ namespace BLL.Services
             this.LoginDataRepository = loginDataRepository;
         }
 
-        public async Task<LoginData> Authorization(string email, string pass)
+        public async Task<LoginData> AuthorizationAsync(string email, string pass)
         {
             return (await LoginDataRepository.FindByConditionAsync(x => x.Login == email && x.Password == pass))?.First();
         }

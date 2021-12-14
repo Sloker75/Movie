@@ -14,7 +14,7 @@ namespace DLL.Models
         public string Surname { get; set; }
         public DateTime BirthDay { get; set; }
         public float salary { get; set; }
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string Role { get; set; }
 
         public int LoginDataId { get; set; }

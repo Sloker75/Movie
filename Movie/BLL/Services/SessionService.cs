@@ -19,17 +19,17 @@ namespace BLL.Services
             this.cinemaHallRepository = cinemaHallRepository;
         }
 
-        public async void AddSession(Session session)
+        public async void AddSessionAsync(Session session)
         {
             await sessionRepository.CreateAsync(session);
         }
 
-        public async Task<IReadOnlyCollection<Session>> GetAllSession()
+        public async Task<IReadOnlyCollection<Session>> GetAllSessionAsync()
         {
             return await sessionRepository.GetAllAsync();
         }
 
-        public async Task<IEnumerable<CinemaHall>> GetAllCinemaHall()
+        public async Task<IEnumerable<CinemaHall>> GetAllCinemaHallAsync()
         {
             return await cinemaHallRepository.GetAllAsync();
         }

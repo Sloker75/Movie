@@ -15,6 +15,7 @@ using DLL.Models;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Movie.View;
 
 namespace Movie
 {
@@ -26,6 +27,42 @@ namespace Movie
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+
+        private void employeeAction_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Main.Content = new EmployeePage();
+        }
+
+        private void cinemaHallAction_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Main.Content = new CinemaHallPage();
+        }
+
+        private void sessionAction_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Main.Content = new SessionPage();
+        }
+
+        private void titcketAction_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Main.Content = new TicketPage();
+        }
+
+        private void filmAction_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Main.Content = new FilmPage();
+        }
+
+        private void ButtonOpen_Click(object sender, RoutedEventArgs e)
+        {
+            //GridBackground.ContextMenu.IsEnabled = false;
         }
     }
 }
