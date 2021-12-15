@@ -15,6 +15,7 @@ namespace BLL.Services
 
         EmployeeRepository employeeRepository;
         CinemaHallRepository cinemaHallRepository;
+        FilmRepository filmRepository;
         public AdminService(EmployeeRepository employeeRepository, CinemaHallRepository cinemaHallRepository)
         {
             this.employeeRepository = employeeRepository;
@@ -26,6 +27,15 @@ namespace BLL.Services
         {
             await employeeRepository.CreateAsync(Employee);
         }
+        public async void AddFilmAsync(Film film)
+        {
+            await filmRepository.CreateAsync(film);
+        }
+        public async void AddHallAsync(CinemaHall cinemaHall)
+        {
+            await cinemaHallRepository.CreateAsync(cinemaHall);
+        }
+
 
         public async Task<IReadOnlyCollection<Employee>> GetAllAsync()
         {
@@ -42,10 +52,9 @@ namespace BLL.Services
             return (await employeeRepository.FindByConditionAsync(x => x.Name == name && x.Surname == surname))?.ToList();
         }
 
-        public async void AddHallAsync(CinemaHall cinemaHall)
-        {
-            await cinemaHallRepository.CreateAsync(cinemaHall);
-        }
+        
+
+        
 
 
     }

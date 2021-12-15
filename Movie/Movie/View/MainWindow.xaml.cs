@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Movie.View;
+using Movie.ViewModel;
 
 namespace Movie
 {
@@ -24,10 +25,11 @@ namespace Movie
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        public MainWindow()
+        private EmployeeViewModel employeeViewModel;
+        public MainWindow(EmployeeViewModel employeeViewModel)
         {
             InitializeComponent();
+            this.employeeViewModel = employeeViewModel;
         }
 
         private void closeBtn_Click(object sender, RoutedEventArgs e)
@@ -38,7 +40,7 @@ namespace Movie
 
         private void employeeAction_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Main.Content = new EmployeePage();
+            Main.Content = new EmployeePage(employeeViewModel);
         }
 
         private void cinemaHallAction_MouseDoubleClick(object sender, MouseButtonEventArgs e)

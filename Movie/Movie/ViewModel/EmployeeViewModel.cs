@@ -97,6 +97,10 @@ namespace Movie.ViewModel
             {
                 return false;
             }
+            else if (CurrentEmployee.BirthDay > new DateTime(2006,12,31))
+            {
+                return false;
+            }
             return true;
         }
 

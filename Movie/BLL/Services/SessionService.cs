@@ -13,6 +13,7 @@ namespace BLL.Services
     {
         SessionRepository sessionRepository;
         CinemaHallRepository cinemaHallRepository;
+        FilmRepository filmRepository;
         public SessionService(SessionRepository sessionRepository, CinemaHallRepository cinemaHallRepository)
         {
             this.sessionRepository = sessionRepository;
@@ -32,6 +33,11 @@ namespace BLL.Services
         public async Task<IEnumerable<CinemaHall>> GetAllCinemaHallAsync()
         {
             return await cinemaHallRepository.GetAllAsync();
+        }
+
+        public async Task<IEnumerable<Film>> GetAllFilmAsync()
+        {
+            return await filmRepository.GetAllAsync();
         }
 
     }

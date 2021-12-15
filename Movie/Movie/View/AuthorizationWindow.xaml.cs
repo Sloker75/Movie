@@ -27,11 +27,6 @@ namespace Movie
             this.DataContext = loginViewModel;
         }
 
-        private void logInBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void closeAuthorizationBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

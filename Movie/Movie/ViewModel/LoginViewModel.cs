@@ -16,6 +16,7 @@ namespace Movie.ViewModel
         AuthorizationService authorizationService;
         private Employee employee;
         private LoginData loginData = new LoginData();
+  
         public LoginViewModel(AuthorizationService authorizationService, Employee employee)
         {
             this.authorizationService = authorizationService;
@@ -79,6 +80,8 @@ namespace Movie.ViewModel
                 employee.PhoneNumber = _employee.Employee.PhoneNumber;
                 employee.LoginDataId = _employee.Employee.LoginDataId;
             }
+            var window = ((MainWindow)App.serviceProvider.GetService(typeof(MainWindow)));
+            window.Show();
         }
     }
 }

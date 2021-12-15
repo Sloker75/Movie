@@ -12,8 +12,8 @@
     <!--<Page.Content>
         <m:EmployeeViewModel></m:EmployeeViewModel>
     </Page.Content>-->
-    
-    
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -37,7 +37,19 @@
             </StackPanel>
             <Button Command="{Binding AddLoginCommand}" Name="addEmployeeBtn" Click="addEmployeeBtn_Click" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="30" Width="450" Margin="0 0 0 20" BorderThickness="10" >Add Employee</Button>
         </Grid>
-        <ListBox ContextMenu="{Binding Worker}" Name="listEmployee" Grid.Row="1"></ListBox>
-        
+        <ListBox ItemsSource="{Binding Worker}" Name="listEmployee" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                        <TextBlock Text="{Binding Surname}"></TextBlock>
+                        <TextBlock Text="{Binding Role}"></TextBlock>
+                        <TextBlock Text="{Binding salary}"></TextBlock>
+                        <TextBlock Text="{Binding BirthDay}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
     </Grid>
 </Page>
