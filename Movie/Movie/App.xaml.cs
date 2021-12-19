@@ -56,9 +56,11 @@ namespace Movie
             services.AddTransient<AuthorizationService>();
             services.AddTransient<SessionService>();
             services.AddTransient<TicketService>();
+            services.AddTransient<EmployeeService>();
             //ViewModel
             services.AddTransient<LoginViewModel>();
             services.AddTransient<EmployeeViewModel>();
+            services.AddTransient<MainViewModel>();
             //Model
             services.AddSingleton<Employee>();
 

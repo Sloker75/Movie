@@ -33,7 +33,7 @@
                 <Button Command="{Binding AddLoginCommand}" Width="200" BorderThickness="10" Name="logInBtn" Margin="0,30">Log in</Button>
             </StackPanel>
         </Grid>
-        <Button Name="closeAuthorizationBtn" Click="closeAuthorizationBtn_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="black">
+        <Button Name="closeAuthorizationBtn" Command="{Binding ClickCloseBtn}" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="black">
             <materialDesing:PackIcon Kind="Close" Width="20" Height="20"></materialDesing:PackIcon>
         </Button>
     </Grid>

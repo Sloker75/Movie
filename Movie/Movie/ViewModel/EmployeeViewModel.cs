@@ -1,6 +1,7 @@
 ﻿using BLL.Services;
 using DLL.Models;
 using Movie.Infrastructure;
+using Movie.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,18 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Movie.ViewModel
 {
     public class EmployeeViewModel :BaseViewModel
     {
-        private readonly AdminService adminService;
+        private readonly AdminService _adminService;
+        private readonly EmployeeService _employeeService;
         private Employee employee;
 
-        public EmployeeViewModel(AdminService adminService)
+        public EmployeeViewModel(AdminService adminService, EmployeeService _employeeService)
         {
-            this.adminService = adminService;
+            this._adminService = adminService;
+            this._employeeService = _employeeService;
         }
 
         public Employee CurrentEmployee
@@ -54,8 +58,7 @@ namespace Movie.ViewModel
             }
         }
 
-        private async void LoadEmployeeAsync() => _employee = new ObservableCollection<Employee>(await adminService.GetAllAsync());
-        
+        private async void LoadEmployeeAsync() => _employee = new ObservableCollection<Employee>(await _employeeService.GetAllAsync());
 
 
         RelayCommand _addEmployeeCommand;
@@ -106,7 +109,7 @@ namespace Movie.ViewModel
 
         private void ExecuteAddEmployee(object obj)
         {
-              adminService.AddEmployeeAsync(CurrentEmployee);
+            _adminService.AddEmployeeAsync(CurrentEmployee);
         }
     }
 }

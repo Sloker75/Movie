@@ -36,17 +36,6 @@ namespace BLL.Services
             await cinemaHallRepository.CreateAsync(cinemaHall);
         }
 
-
-        public async Task<IReadOnlyCollection<Employee>> GetAllAsync()
-        {
-            return await employeeRepository.GetAllPeopleAsync();
-        }
-
-        public async Task<IReadOnlyCollection<Employee>> GetAllWithLoginAsync()
-        {
-            return await employeeRepository.GetAllAsync();
-        }
-
         public async Task<IReadOnlyCollection<Employee>> GetEmployeeAsync(string name, string surname)
         {
             return (await employeeRepository.FindByConditionAsync(x => x.Name == name && x.Surname == surname))?.ToList();

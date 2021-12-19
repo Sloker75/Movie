@@ -13,14 +13,14 @@ namespace Movie.ViewModel
 {
     public class FilmViewModel : BaseViewModel
     {
-        private readonly AdminService adminService;
-        private readonly SessionService sessionService;
+        private readonly AdminService _adminService;
+        private readonly SessionService _sessionService;
         private Film film;
 
         public FilmViewModel(AdminService adminService, SessionService sessionService)
         {
-            this.adminService = adminService;
-            this.sessionService = sessionService;
+            this._adminService = adminService;
+            this._sessionService = sessionService;
         }
 
         public Film CurrentFilm
@@ -55,7 +55,7 @@ namespace Movie.ViewModel
             }
         }
 
-        private async void LoadEmployeeAsync() => _film = new ObservableCollection<Film>(await sessionService.GetAllFilmAsync());
+        private async void LoadEmployeeAsync() => _film = new ObservableCollection<Film>(await _sessionService.GetAllFilmAsync());
 
         RelayCommand _addFilmCommand;
         public ICommand AddEmployeeCommand
@@ -93,7 +93,7 @@ namespace Movie.ViewModel
 
         private void ExecuteAddFilm(object obj)
         {
-           adminService.AddFilmAsync(CurrentFilm);
+            _adminService.AddFilmAsync(CurrentFilm);
         }
     }
 }

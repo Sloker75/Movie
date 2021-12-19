@@ -13,11 +13,11 @@ namespace Movie.ViewModel
 {
     public class SessionViewModel : BaseViewModel
     {
-        private readonly SessionService sessionService;
+        private readonly SessionService _sessionService;
         private Session session; 
         public SessionViewModel(SessionService sessionService)
         {
-            this.sessionService = sessionService;
+            this._sessionService = sessionService;
         }
 
         public Session CurrentSession
@@ -52,7 +52,7 @@ namespace Movie.ViewModel
             }
         }
 
-        private async void LoadEmployeeAsync() => _employee = new ObservableCollection<Session>(await sessionService.GetAllSessionAsync());
+        private async void LoadEmployeeAsync() => _employee = new ObservableCollection<Session>(await _sessionService.GetAllSessionAsync());
 
         RelayCommand _addEmployeeCommand;
         public ICommand AddEmployeeCommand
@@ -75,7 +75,7 @@ namespace Movie.ViewModel
 
         private void ExecuteAddEmployee(object obj)
         {
-            sessionService.AddSessionAsync(CurrentSession);
+            _sessionService.AddSessionAsync(CurrentSession);
         }
 
     }

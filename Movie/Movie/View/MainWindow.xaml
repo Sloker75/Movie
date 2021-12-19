@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Movie"
+        xmlns:commandBehavior="clr-namespace:Movie.Infrastructure"
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" Height="600" Width="1080" ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen" WindowStyle="None">
@@ -37,13 +38,20 @@
             <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
         </EventTrigger>
     </Window.Triggers>
+
+    <!--<Window.CommandBindings>
+        <CommandBinding Command="DoubleClick">
+            
+        </CommandBinding>
+    </Window.CommandBindings>-->
+    
     <Grid>
         
         <Grid x:Name="GridBackground"  Background="#55313131" Opacity="0"></Grid>
-        <Button x:Name="ButtonOpen" Click="ButtonOpen_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0">
+        <Button x:Name="ButtonOpen" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0">
             <materialDesign:PackIcon Kind="Menu" Foreground="#FF313131"/>
         </Button>
-        <Button Name="closeBtn" Click="closeBtn_Click"  HorizontalAlignment="Right" VerticalAlignment="Top"  Background="{x:Null}" BorderBrush="{x:Null}">
+        <Button Name="closeBtn" Command="{Binding ClickCloseBtn}"  HorizontalAlignment="Right" VerticalAlignment="Top"  Background="{x:Null}" BorderBrush="{x:Null}">
             <materialDesign:PackIcon Kind="Close" Foreground="#FF313131"/>
         </Button>
         <Frame NavigationUIVisibility="Hidden" x:Name="Main"/>
@@ -59,31 +67,39 @@
             <StackPanel>
                 <Image Height="140" Source="Photo/Cinema.png" Stretch="Fill"/>
                 <ListView Foreground="#FF313131" FontFamily="Champagne &amp; Limousines" FontSize="18">
-                    <ListViewItem Name="employeeAction" MouseDoubleClick="employeeAction_MouseDoubleClick" Height="45" Padding="0">
-                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                    <ListViewItem Name="employeeAction" commandBehavior:MouseDoubleClick.Command="{Binding DoubleClickEmployee}"
+                        commandBehavior:MouseDoubleClick.CommandParameter="{Binding ElementName=Main}" Height="45" Padding="0">
+                        <StackPanel Orientation="Horizontal" Margin="10 0" >
+                            <!--<StackPanel.InputBindings>
+                                
+                            </StackPanel.InputBindings>-->
                             <materialDesign:PackIcon Kind="Worker" Width="30" Height="30" Foreground="#FF822E" Margin="5" VerticalAlignment="Center"/>
                             <TextBlock Text="Employee" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Name="cinemaHallAction" MouseDoubleClick="cinemaHallAction_MouseDoubleClick" Height="45" Padding="0">
+                    <ListViewItem commandBehavior:MouseDoubleClick.Command="{Binding DoubleClickCinemaHall}"
+                        commandBehavior:MouseDoubleClick.CommandParameter="{Binding ElementName=Main}" Name="cinemaHallAction"  Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="TownHall" Width="30" Height="30" Foreground="#FF822E" Margin="5" VerticalAlignment="Center"/>
                             <TextBlock Text="Cinema Hall" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Name="sessionAction" MouseDoubleClick="sessionAction_MouseDoubleClick" Height="45" Padding="0">
+                    <ListViewItem Name="sessionAction" commandBehavior:MouseDoubleClick.Command="{Binding DoubleClickSession}"
+                        commandBehavior:MouseDoubleClick.CommandParameter="{Binding ElementName=Main}" Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="MovieCheck" Width="30" Height="30" Foreground="#FF822E" Margin="5" VerticalAlignment="Center"/>
                             <TextBlock Text="Session" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Name="titcketAction" MouseDoubleClick="titcketAction_MouseDoubleClick" Height="45" Padding="0">
+                    <ListViewItem Name="titcketAction" commandBehavior:MouseDoubleClick.Command="{Binding DoubleClickTicket}"
+                        commandBehavior:MouseDoubleClick.CommandParameter="{Binding ElementName=Main}" Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Ticket" Width="30" Height="30" Foreground="#FF822E" Margin="5" VerticalAlignment="Center"/>
                             <TextBlock Text="Ticket" Margin="10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Name="filmAction" MouseDoubleClick="filmAction_MouseDoubleClick" Height="45" Padding="0">
+                    <ListViewItem Name="filmAction" commandBehavior:MouseDoubleClick.Command="{Binding DoubleClickFilm}"
+                        commandBehavior:MouseDoubleClick.CommandParameter="{Binding ElementName=Main}" Height="45" Padding="0">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="LibraryMovie" Width="30" Height="30" Foreground="#FF822E" Margin="5" VerticalAlignment="Center"/>
                             <TextBlock Text="Films" Margin="10"/>

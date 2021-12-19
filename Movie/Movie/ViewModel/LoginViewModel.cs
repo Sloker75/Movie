@@ -13,13 +13,13 @@ namespace Movie.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
-        AuthorizationService authorizationService;
+        private readonly AuthorizationService _authorizationService;
         private Employee employee;
         private LoginData loginData = new LoginData();
   
         public LoginViewModel(AuthorizationService authorizationService, Employee employee)
         {
-            this.authorizationService = authorizationService;
+            this._authorizationService = authorizationService;
             this.employee = employee;
         }
 
@@ -69,7 +69,7 @@ namespace Movie.ViewModel
 
         private async void ExecuteAuthorization(object obj)
         {
-           var _employee =  await authorizationService.AuthorizationAsync(LoginData);
+           var _employee =  await _authorizationService.AuthorizationAsync(LoginData);
             if (_employee != null)
             {
                 employee.Name = _employee.Employee.Name;
@@ -80,8 +80,26 @@ namespace Movie.ViewModel
                 employee.PhoneNumber = _employee.Employee.PhoneNumber;
                 employee.LoginDataId = _employee.Employee.LoginDataId;
             }
-            var window = ((MainWindow)App.serviceProvider.GetService(typeof(MainWindow)));
-            window.Show();
+            ((MainWindow)App.serviceProvider.GetService(typeof(MainWindow))).Show();
+        }
+
+        RelayCommand _ClickCloseBtnCommand;
+
+        public ICommand ClickCloseBtn
+        {
+            get
+            {
+                if (_ClickCloseBtnCommand == null)
+                {
+                    _ClickCloseBtnCommand = new RelayCommand(ExecuteClickCloseBtn);
+                }
+                return _ClickCloseBtnCommand;
+            }
+        }
+
+        private void ExecuteClickCloseBtn(object obj)
+        {
+            ((AuthorizationWindow)App.serviceProvider.GetService(typeof(AuthorizationWindow))).Close();
         }
     }
 }

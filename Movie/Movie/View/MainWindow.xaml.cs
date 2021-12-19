@@ -25,47 +25,10 @@ namespace Movie
     /// </summary>
     public partial class MainWindow : Window
     {
-        private EmployeeViewModel employeeViewModel;
-        public MainWindow(EmployeeViewModel employeeViewModel)
+        public MainWindow(MainViewModel mainViewModel)
         {
             InitializeComponent();
-            this.employeeViewModel = employeeViewModel;
-        }
-
-        private void closeBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-
-        private void employeeAction_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Main.Content = new EmployeePage(employeeViewModel);
-        }
-
-        private void cinemaHallAction_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Main.Content = new CinemaHallPage();
-        }
-
-        private void sessionAction_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Main.Content = new SessionPage();
-        }
-
-        private void titcketAction_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Main.Content = new TicketPage();
-        }
-
-        private void filmAction_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Main.Content = new FilmPage();
-        }
-
-        private void ButtonOpen_Click(object sender, RoutedEventArgs e)
-        {
-            //GridBackground.ContextMenu.IsEnabled = false;
+            this.DataContext = mainViewModel;
         }
     }
 }
