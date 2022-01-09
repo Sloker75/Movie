@@ -13,5 +13,10 @@ namespace DLL.Models
         public string MovieTitle { get; set; }
         public string Genre { get; set; }
         public DateTime MovieDuration { get; set; }
+
+        public override string ToString()
+        {
+            return MovieTitle;
+        }
     }
 }

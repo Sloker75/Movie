@@ -14,10 +14,11 @@ namespace BLL.Services
         SessionRepository sessionRepository;
         CinemaHallRepository cinemaHallRepository;
         FilmRepository filmRepository;
-        public SessionService(SessionRepository sessionRepository, CinemaHallRepository cinemaHallRepository)
+        public SessionService(SessionRepository sessionRepository, CinemaHallRepository cinemaHallRepository, FilmRepository filmRepository)
         {
             this.sessionRepository = sessionRepository;
             this.cinemaHallRepository = cinemaHallRepository;
+            this.filmRepository = filmRepository;
         }
 
         public async void AddSessionAsync(Session session)

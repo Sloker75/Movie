@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Movie.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace Movie.View
     /// </summary>
     public partial class SessionPage : Page
     {
-        public SessionPage()
+        public SessionPage(SessionViewModel sessionViewModel)
         {
             InitializeComponent();
+            this.DataContext = sessionViewModel;
+            filmComboBox.ItemsSource= sessionViewModel.Film;
+            //hallComboBox.ItemsSource = sessionViewModel.CinemaHall;
         }
     }
 }

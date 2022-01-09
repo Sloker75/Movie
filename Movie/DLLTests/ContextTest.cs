@@ -102,7 +102,7 @@ namespace DLLTests
                 salary = 15000,
                 BirthDay = new System.DateTime(2004, 10, 6, 21, 5, 14),
                 LoginDataId = 1,
-                PhoneNumber = 0964786515,
+                PhoneNumber = "0964786515",
                 Role = "admin",
                 Login = Login
             });

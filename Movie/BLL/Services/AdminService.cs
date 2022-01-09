@@ -16,10 +16,11 @@ namespace BLL.Services
         EmployeeRepository employeeRepository;
         CinemaHallRepository cinemaHallRepository;
         FilmRepository filmRepository;
-        public AdminService(EmployeeRepository employeeRepository, CinemaHallRepository cinemaHallRepository)
+        public AdminService(EmployeeRepository employeeRepository, CinemaHallRepository cinemaHallRepository, FilmRepository filmRepository)
         {
             this.employeeRepository = employeeRepository;
             this.cinemaHallRepository = cinemaHallRepository;
+            this.filmRepository = filmRepository;
         }
 
 
@@ -40,10 +41,6 @@ namespace BLL.Services
         {
             return (await employeeRepository.FindByConditionAsync(x => x.Name == name && x.Surname == surname))?.ToList();
         }
-
-        
-
-        
 
 
     }

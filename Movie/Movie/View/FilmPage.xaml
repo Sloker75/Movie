@@ -4,11 +4,46 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Movie.View"
+      xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="FilmPage">
 
     <Grid>
-        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="230"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBox Text="{Binding CurrentFilm.MovieTitle, UpdateSourceTrigger=PropertyChanged}" materialDesing:HintAssist.Hint="Movie title" Margin="0 20 0 15"></TextBox>
+                <TextBox Text="{Binding CurrentFilm.Genre, UpdateSourceTrigger=PropertyChanged}" materialDesing:HintAssist.Hint="Genre" Margin="0 20 0 15"></TextBox>
+                <TextBox Text="{Binding CurrentFilm.MovieDuration, UpdateSourceTrigger=PropertyChanged}" materialDesing:HintAssist.Hint="Movie duration" Margin="0 20 0 15"></TextBox>
+            </StackPanel>
+
+            <Button Command="{Binding AddFilmCommand}" Name="addFilmBtn" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="30" Width="450" Margin="0 0 0 20" BorderThickness="10" >Add Film</Button>
+
+            <ListBox ItemsSource="{Binding Films}" Name="listFilm" Grid.Row="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Movie Title:</TextBlock>
+                                <TextBlock Text="{Binding MovieTitle}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Genre:</TextBlock>
+                                <TextBlock Text="{Binding Genre}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Movie Duration:</TextBlock>
+                                <TextBlock Text="{Binding MovieDuration}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
     </Grid>
 </Page>

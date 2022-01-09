@@ -33,6 +33,7 @@ namespace Movie.ViewModel
                 if (employee != null) return employee;
                 {
                     employee = new Employee();
+                    employee.Login = new LoginData();
                     return employee;
                 }
             }
@@ -88,22 +89,22 @@ namespace Movie.ViewModel
             {
                 return false;
             }
-            else if (CurrentEmployee.Role.ToLower() != "admin" || CurrentEmployee.Role.ToLower() != "employee")
+            else if (CurrentEmployee.Role.ToLower() != "admin" && CurrentEmployee.Role.ToLower() != "employee")
             {
                 return false;
             }
-            else if (!Regex.IsMatch(CurrentEmployee.PhoneNumber, @"\d{3}-\d{3}-\d{4}", RegexOptions.IgnoreCase))
-            {
-                return false;
-            }
-            else if (!Regex.IsMatch(Convert.ToString(CurrentEmployee.BirthDay), @"\d{4}.\d{2}.\d{2}", RegexOptions.IgnoreCase))
-            {
-                return false;
-            }
-            else if (CurrentEmployee.BirthDay > new DateTime(2006,12,31))
-            {
-                return false;
-            }
+            //else if (!Regex.IsMatch(CurrentEmployee.PhoneNumber, @"\d{3}-\d{3}-\d{4}", RegexOptions.IgnoreCase))
+            //{
+            //    return false;
+            //}
+            //else if (!Regex.IsMatch(Convert.ToString(CurrentEmployee.BirthDay), @"\d{4}.\d{2}.\d{2}", RegexOptions.IgnoreCase))
+            //{
+            //    return false;
+            //}
+            //else if (CurrentEmployee.BirthDay > new DateTime(2006,12,31))
+            //{
+            //    return false;
+            //}
             return true;
         }
 

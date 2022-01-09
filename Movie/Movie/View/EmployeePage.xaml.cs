@@ -26,10 +26,5 @@ namespace Movie.View
             InitializeComponent();
             this.DataContext = employeeViewModel;
         }
-
-        private void addEmployeeBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

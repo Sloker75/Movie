@@ -4,11 +4,56 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Movie.View"
+      xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SessionPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.6*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox SelectedItem="{Binding CurrentSession.Film.MovieTitle, UpdateSourceTrigger=PropertyChanged}" Name="filmComboBox" Grid.Row="0" Grid.Column="0" Margin="0 20 10 0" ></ComboBox>
+            <ComboBox SelectedItem="{Binding CurrentSession.Hall.HallRoom, UpdateSourceTrigger=PropertyChanged}" Name="hallComboBox" Grid.Row="0" Grid.Column="1" Margin="0 20 10 0"></ComboBox>
+
+            <TextBox Text="{Binding CurrentSession.startOfTheSession, UpdateSourceTrigger=PropertyChanged}" Name="startOfTheSessionTextBox" Grid.Row="1" Grid.Column="0"  materialDesing:HintAssist.Hint="start of the session"></TextBox>
+            <TextBox Text="{Binding CurrentSession.endOfTheSession, UpdateSourceTrigger=PropertyChanged}" Name="endOfTheSessionTextBox" Grid.Row="1" Grid.Column="1" materialDesing:HintAssist.Hint="end of the session"></TextBox>
+
+            <Button Name="addSessionBtn" Command="{Binding AddSessionCommand}" Grid.Row="3" Grid.ColumnSpan="2" BorderThickness="15" Width="650">Save</Button>
+        </Grid>
+
+        <ListBox ItemsSource="{Binding Sessions}" Name="listSession" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Movie Title:</TextBlock>
+                            <TextBlock Text="{Binding MovieTitle}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Genre:</TextBlock>
+                            <TextBlock Text="{Binding Genre}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Movie Duration:</TextBlock>
+                            <TextBlock Text="{Binding MovieDuration}"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

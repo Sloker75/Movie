@@ -14,7 +14,7 @@ namespace Movie.ViewModel
     public class SessionViewModel : BaseViewModel
     {
         private readonly SessionService _sessionService;
-        private Session session; 
+        private Session session;
         public SessionViewModel(SessionService sessionService)
         {
             this._sessionService = sessionService;
@@ -27,6 +27,8 @@ namespace Movie.ViewModel
                 if (session != null) return session;
                 {
                     session = new Session();
+                    session.Film = new Film();
+                    session.Hall = new CinemaHall();
                     return session;
                 }
             }
@@ -37,33 +39,82 @@ namespace Movie.ViewModel
             }
         }
 
-        private ObservableCollection<Session> _employee;
 
-        public ObservableCollection<Session> Worker
+        private ObservableCollection<Film> _film;
+
+        public ObservableCollection<Film> Film
         {
             get
             {
-                if (_employee != null) return _employee;
+                if (_film != null) return _film;
                 else
                 {
-                    LoadEmployeeAsync();
-                    return _employee;
+                    LoadFilmAsync();
+                    return _film;
                 }
             }
         }
 
-        private async void LoadEmployeeAsync() => _employee = new ObservableCollection<Session>(await _sessionService.GetAllSessionAsync());
+        private async Task<ObservableCollection<Film>> LoadFilmAsync() => _film = new ObservableCollection<Film>(await _sessionService.GetAllFilmAsync());
 
-        RelayCommand _addEmployeeCommand;
-        public ICommand AddEmployeeCommand
+
+        //private ObservableCollection<CinemaHall> _hall;
+
+        //public ObservableCollection<CinemaHall> CinemaHall
+        //{
+        //    get
+        //    {
+        //        if (_hall != null) return _hall;
+        //        else
+        //        {
+        //            LoadHallAsync();
+        //            return _hall;
+        //        }
+        //    }
+        //}
+
+
+        //private async void LoadHallAsync() => _hall = new ObservableCollection<CinemaHall>(await _sessionService.GetAllCinemaHallAsync());
+
+
+
+        private ObservableCollection<Session> _session;
+
+        public ObservableCollection<Session> Sessions
         {
             get
             {
-                if (_addEmployeeCommand == null)
+                if (_session != null) return _session;
+                else
                 {
-                    _addEmployeeCommand = new RelayCommand(ExecuteAddEmployee, CanExecuteAddEmployee);
+                    LoadSessionAsync();
+                    return _session;
                 }
-                return _addEmployeeCommand;
+            }
+        }
+
+        private async void LoadSessionAsync()
+        {
+            try
+            {
+                _session = new ObservableCollection<Session>(await _sessionService.GetAllSessionAsync());
+            }
+            catch (Exception)
+            {
+                LoadSessionAsync();
+            }
+        } 
+
+        RelayCommand _addSessionCommand;
+        public ICommand AddSessionCommand
+        {
+            get
+            {
+                if (_addSessionCommand == null)
+                {
+                    _addSessionCommand = new RelayCommand(ExecuteAddEmployee, CanExecuteAddEmployee);
+                }
+                return _addSessionCommand;
             }
         }
 

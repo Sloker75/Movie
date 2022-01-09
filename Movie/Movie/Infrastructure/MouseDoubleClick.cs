@@ -58,7 +58,11 @@ namespace Movie.Infrastructure
             Control control = sender as Control;
             ICommand command = (ICommand)control.GetValue(CommandProperty);
             object commandParameter = control.GetValue(CommandParameterProperty);
-            command.Execute(commandParameter);
+            if (command.CanExecute(commandParameter))
+            {
+                command.Execute(commandParameter);
+            }
+            
         }
     }
 }

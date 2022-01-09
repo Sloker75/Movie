@@ -42,23 +42,23 @@ namespace Movie.ViewModel
 
         private ObservableCollection<Film> _film;
 
-        public ObservableCollection<Film> Worker
+        public ObservableCollection<Film> Films
         {
             get
             {
                 if (_film != null) return _film;
                 else
                 {
-                    LoadEmployeeAsync();
+                    LoadFilmsAsync();
                     return _film;
                 }
             }
         }
 
-        private async void LoadEmployeeAsync() => _film = new ObservableCollection<Film>(await _sessionService.GetAllFilmAsync());
+        private async void LoadFilmsAsync() => _film = new ObservableCollection<Film>(await _sessionService.GetAllFilmAsync());
 
         RelayCommand _addFilmCommand;
-        public ICommand AddEmployeeCommand
+        public ICommand AddFilmCommand
         {
             get
             {
@@ -72,7 +72,7 @@ namespace Movie.ViewModel
 
         private bool CanExecuteAddFilm(object obj)
         {
-            if (String.IsNullOrEmpty(CurrentFilm.MovieTitle))
+            if (String.IsNullOrWhiteSpace(CurrentFilm.MovieTitle))
             {
                 return false;
             }
@@ -80,7 +80,7 @@ namespace Movie.ViewModel
             {
                 return false;
             }
-            else if (String.IsNullOrEmpty(CurrentFilm.Genre))
+            else if (String.IsNullOrWhiteSpace(CurrentFilm.Genre))
             {
                 return false;
             }

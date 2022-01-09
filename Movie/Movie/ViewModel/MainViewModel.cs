@@ -1,4 +1,5 @@
-﻿using Movie.Infrastructure;
+﻿using DLL.Models;
+using Movie.Infrastructure;
 using Movie.View;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,24 @@ namespace Movie.ViewModel
 {
     public class MainViewModel
     {
-        
-
         private EmployeeViewModel employeeViewModel;
+        private FilmViewModel filmViewModel;
+        private Employee employee;
+        private SessionViewModel sessionViewModel;
+        private CinemaHallViewModel cinemaHallViewModel;
 
-        public MainViewModel(EmployeeViewModel employeeViewModel)
+        public MainViewModel(EmployeeViewModel employeeViewModel, FilmViewModel filmViewModel, Employee employee, SessionViewModel sessionViewModel, CinemaHallViewModel cinemaHallViewModel)
         {
             this.employeeViewModel = employeeViewModel;
+            this.filmViewModel = filmViewModel;
+            this.employee = employee;
+            this.sessionViewModel = sessionViewModel;
+            this.cinemaHallViewModel = cinemaHallViewModel;
         }
+
+        #region EmployeeDoubleClick
+
+
 
         RelayCommand _DoubleClickEmployeeCommand;
 
@@ -27,9 +38,15 @@ namespace Movie.ViewModel
         {
             get
             {
-                _DoubleClickEmployeeCommand = new RelayCommand(ExecuteDoubleclickEmployee);
+                
+                _DoubleClickEmployeeCommand = new RelayCommand(ExecuteDoubleclickEmployee, CanExecuteDoubleClickEmployee);
                 return _DoubleClickEmployeeCommand;
             }
+        }
+
+        private bool CanExecuteDoubleClickEmployee(object obj)
+        {
+            return !(employee.Role == "employee");
         }
 
         private void ExecuteDoubleclickEmployee(object obj)
@@ -39,23 +56,39 @@ namespace Movie.ViewModel
 
         }
 
+        #endregion
+
+        #region CinemaHallDoubleClick
+
+        
+
         RelayCommand _DoubleClickCinemaHallCommand;
 
         public ICommand DoubleClickCinemaHall
         {
             get
             {
-                _DoubleClickCinemaHallCommand = new RelayCommand(ExecuteDoubleclickCinemaHall);
+                _DoubleClickCinemaHallCommand = new RelayCommand(ExecuteDoubleclickCinemaHall, CanExecuteDoubleClickCinemaHall);
                 return _DoubleClickCinemaHallCommand;
             }
+        }
+
+        private bool CanExecuteDoubleClickCinemaHall(object obj)
+        {
+            return !(employee.Role == "employee");
         }
 
         private void ExecuteDoubleclickCinemaHall(object obj)
         {
             var frame = (Frame)obj;
-            frame.Content = new CinemaHallPage();
+            frame.Content = new CinemaHallPage(cinemaHallViewModel);
 
         }
+        #endregion
+
+        #region SessionDoubleClick
+
+        
 
         RelayCommand _DoubleClickSessionCommand;
 
@@ -71,9 +104,15 @@ namespace Movie.ViewModel
         private void ExecuteDoubleClickSession(object obj)
         {
             var frame = (Frame)obj;
-            frame.Content = new SessionPage();
+            frame.Content = new SessionPage(sessionViewModel);
 
         }
+
+        #endregion
+
+        #region TicketDoubleClick
+
+        
 
         RelayCommand _DoubleClickTicketCommand;
 
@@ -93,24 +132,40 @@ namespace Movie.ViewModel
 
         }
 
+        #endregion
+
+        #region FilmDoubleClick
+
+       
+
         RelayCommand _DoubleClickFilmCommand;
 
         public ICommand DoubleClickFilm
         {
             get
             {
-                _DoubleClickFilmCommand = new RelayCommand(ExecuteDoubleClickFilm);
+                _DoubleClickFilmCommand = new RelayCommand(ExecuteDoubleClickFilm, CanExecuteDoubleClickFilm);
                 return _DoubleClickFilmCommand;
             }
+        }
+
+        private bool CanExecuteDoubleClickFilm(object obj)
+        {
+            return !(employee.Role == "employee");
         }
 
         private void ExecuteDoubleClickFilm(object obj)
         {
             var frame = (Frame)obj;
-            frame.Content = new FilmPage();
+            frame.Content = new FilmPage(filmViewModel);
 
         }
 
+        #endregion
+
+        #region CloseClick
+
+        
         RelayCommand _ClickCloseBtnCommand;
 
         public ICommand ClickCloseBtn
@@ -126,5 +181,6 @@ namespace Movie.ViewModel
         {
             ((MainWindow)App.serviceProvider.GetService(typeof(MainWindow))).Close();
         }
+        #endregion
     }
 }

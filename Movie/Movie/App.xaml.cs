@@ -34,7 +34,7 @@ namespace Movie
         {
             //Window
             services.AddSingleton<MainWindow>();
-            services.AddTransient<AuthorizationWindow>();
+            services.AddSingleton<AuthorizationWindow>();
             //Page
             services.AddTransient<EmployeePage>();
             services.AddTransient<FilmPage>();
@@ -61,6 +61,8 @@ namespace Movie
             services.AddTransient<LoginViewModel>();
             services.AddTransient<EmployeeViewModel>();
             services.AddTransient<MainViewModel>();
+            services.AddTransient<FilmViewModel>();
+            services.AddTransient<SessionViewModel>();
             //Model
             services.AddSingleton<Employee>();
 
